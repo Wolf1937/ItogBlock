@@ -6,3 +6,36 @@
 // [«hello», «2», «world», «:-)»] -> [«2», «:-)»]
 // [«12345», «1234», «-2»] -> [«-2»]
 
+
+string[] array = InputArray();
+string[] result = OutputArray(array, 3);
+Console.WriteLine($"[{string.Join(", ", array)}] -> [{string.Join(", ", result)}]");
+
+string[] OutputArray(string[] input, int n) {
+    string[] output = new string[CountLessThan(input, n)];
+
+    for(int i = 0, j = 0; i < input.Length; i++) {
+        if(input[i].Length <= n) {
+            output[j] = input[i];
+            j++;
+        }
+    }
+
+    return output;
+}
+
+int CountLessThan(string[] input, int n) {
+    int count = 0;
+
+    for(int i = 0; i < input.Length; i++) {
+        if(input[i].Length <= n) {
+            count++;
+        }
+    }
+
+    return count;
+}
+string[] InputArray(){
+    Console.Write("Введите массив, разделяя элементы пробелами: ");
+    return Console.ReadLine().Split(" ");
+}
